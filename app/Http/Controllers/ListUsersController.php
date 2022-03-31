@@ -15,7 +15,7 @@ class ListUsersController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $users = User::all();
+        $users = User::orderBy('name')->get();
         return inertia('Dashboard', ['users' => $users]);
     }
 }
