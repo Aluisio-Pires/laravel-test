@@ -34,7 +34,6 @@ class CreateNewUser implements CreatesNewUsers
             'phone.integer' => 'O telefone só pode conter números',
             'unique' => 'O email informado já está em uso',
             'email' => 'Email inválido',
-            'mimes' => 'A foto deve possuir no máximo 1MB'
         ])->validate();
 
         return User::create([

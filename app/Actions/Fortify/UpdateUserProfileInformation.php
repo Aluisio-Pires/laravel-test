@@ -31,7 +31,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'phone.integer' => 'O telefone só pode conter números',
             'unique' => 'O email informado já está em uso',
             'email' => 'Email inválido',
-            'mimes' => 'A foto deve possuir no máximo 1MB'
+            'mimes' => 'Apenas fotos do tipo jpg, jpeg e png são permitidas',
+            'photo.max' => 'A foto deve possuir no máximo 1MB'
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
