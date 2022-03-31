@@ -20,8 +20,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'integer', 'max:9999999999999'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+        ],
+        [
+            'required' => 'O campo :attribute é obrigatório',
+            'name.max' => 'O nome tem o tamanho máximo de 255 caracteres',
+            'phone.max' => 'O telefone só pode conter no máximo 14 dígitos',
+            'phone.integer' => 'O telefone só pode conter números',
+            'unique' => 'O email informado já está em uso',
+            'email' => 'Email inválido',
+            'mimes' => 'A foto deve possuir no máximo 1MB'
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -34,6 +44,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'phone' => $input['phone'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -50,6 +61,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
+            'phone' => $input['phone'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

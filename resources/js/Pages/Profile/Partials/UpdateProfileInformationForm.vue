@@ -17,6 +17,7 @@ const props = defineProps({
 const form = useForm({
     _method: 'PUT',
     name: props.user.name,
+    phone: props.user.phone,
     email: props.user.email,
     photo: null,
 });
@@ -134,6 +135,19 @@ const clearPhotoFileInput = () => {
                     autocomplete="name"
                 />
                 <JetInputError :message="form.errors.name" class="mt-2" />
+            </div>
+
+            <!-- Phone -->
+            <div class="col-span-6 sm:col-span-4">
+                <JetLabel for="phone" value="Telefone" />
+                <JetInput
+                    id="phone"
+                    v-model="form.phone"
+                    type="number"
+                    class="mt-1 block w-full"
+                    autocomplete="phone"
+                />
+                <JetInputError :message="form.errors.phone" class="mt-2" />
             </div>
 
             <!-- Email -->

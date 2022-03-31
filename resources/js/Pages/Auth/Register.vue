@@ -11,6 +11,7 @@ import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
 const form = useForm({
     name: '',
     email: '',
+    phone: '',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -44,6 +45,18 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="name"
+                />
+            </div>
+
+            <div class="mt-4">
+                <JetLabel for="phone" value="Telefone" />
+                <JetInput
+                    id="phone"
+                    v-model="form.phone"
+                    type="number"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="phone"
                 />
             </div>
 
